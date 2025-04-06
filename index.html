@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenEye Clone</title>
+    <style>
+        body { margin: 0; overflow: hidden; /* Hide scrollbars */ }
+        canvas { display: block; }
+        /* Basic Crosshair */
+        #crosshair {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference; /* Make it visible on most backgrounds */
+            z-index: 101; /* Above HUD */
+            pointer-events: none; /* Allow clicking through */
+            display: none; /* Hidden until pointer lock */
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "three/examples/jsm/": "./node_modules/three/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- HUD and Crosshair elements will be created/managed by JS -->
+    <div id="crosshair"></div>
+    <!-- Remove old script tags -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/three@0.128.0/examples/js/controls/PointerLockControls.js"></script> -->
+
+    <!-- Load main game script as a module -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
