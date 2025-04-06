@@ -4,10 +4,16 @@ import {
     camera,
     controls,
     setControls,
+    moveForward, 
+    moveBackward,
+    moveLeft,
+    moveRight,
+    isSprinting,
     setMoveForward,
     setMoveBackward,
     setMoveLeft,
-    setMoveRight
+    setMoveRight,
+    setIsSprinting
 } from './globals.js';
 import { shoot } from './shooting.js'; // We'll create this next
 import { reloadWeapon, addReserveAmmo } from './weaponManager.js'; // Import reload function and addReserveAmmo function
@@ -112,6 +118,9 @@ function onKeyDown(event) {
             case 'KeyD':
                 setMoveRight(true);
                 break;
+            case 'KeyQ': // Sprint key
+                setIsSprinting(true);
+                break;
             case 'KeyR': // Add reload key
                 if (typeof reloadWeapon === 'function') {
                     reloadWeapon();
@@ -153,6 +162,9 @@ function onKeyUp(event) {
             case 'ArrowRight':
             case 'KeyD':
                 setMoveRight(false);
+                break;
+            case 'KeyQ': // Sprint key release
+                setIsSprinting(false);
                 break;
         }
     } catch (error) {

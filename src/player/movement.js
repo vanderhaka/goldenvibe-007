@@ -7,6 +7,7 @@ import {
   moveBackward,
   moveLeft,
   moveRight,
+  isSprinting,
   setVelocity
 } from '../globals.js';
 import { PLAYER_HEIGHT, PLAYER_SPEED, FRICTION } from './playerConfig.js';
@@ -41,13 +42,17 @@ function calculateVelocity(currentVelocity, currentDirection, delta) {
   currentDirection.x = Number(right) - Number(left);
   currentDirection.normalize();
   
+  // Apply speed multiplier if sprinting (1.6x speed)
+  const speedMultiplier = isSprinting ? 2.0 : 1.0;
+  const effectiveSpeed = PLAYER_SPEED * speedMultiplier;
+  
   // Apply movement force based on input
   if (forward || backward) {
-    currentVelocity.z -= currentDirection.z * PLAYER_SPEED * delta;
+    currentVelocity.z -= currentDirection.z * effectiveSpeed * delta;
   }
   
   if (left || right) {
-    currentVelocity.x -= currentDirection.x * PLAYER_SPEED * delta;
+    currentVelocity.x -= currentDirection.x * effectiveSpeed * delta;
   }
   
   return currentVelocity;

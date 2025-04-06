@@ -11,6 +11,7 @@ export let moveForward = false;
 export let moveBackward = false;
 export let moveLeft = false;
 export let moveRight = false;
+export let isSprinting = false; // Track if Q key is pressed for sprint
 export let velocity = new THREE.Vector3();
 export let direction = new THREE.Vector3();
 export let prevTime = performance.now();
@@ -37,6 +38,7 @@ export function setMoveForward(value) { moveForward = value; }
 export function setMoveBackward(value) { moveBackward = value; }
 export function setMoveLeft(value) { moveLeft = value; }
 export function setMoveRight(value) { moveRight = value; }
+export function setIsSprinting(value) { isSprinting = value; } // Setter for sprint state
 export function setVelocity(newVelocity) { velocity.copy(newVelocity); } // Use copy for vectors
 export function setDirection(newDirection) { direction.copy(newDirection); } // Use copy for vectors
 export function setPrevTime(newTime) { prevTime = newTime; }
